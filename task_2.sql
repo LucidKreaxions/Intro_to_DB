@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Authors (
 
 -- Create the Books table
 CREATE TABLE IF NOT EXISTS Books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author_id INT,
     price DECIMAL(10,2) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Customers (
 
 -- Create the Orders table
 CREATE TABLE IF NOT EXISTS Orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     order_date DATE DEFAULT (CURRENT_DATE),
     total_price DECIMAL(10,2) NOT NULL DEFAULT 0,
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
     book_id INT,
-    quantity INT NOT NULL,
+    quantity DOUBLE NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES Orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (book_id) REFERENCES Books(id) ON DELETE CASCADE
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES Books(book_id) ON DELETE CASCADE
 );
 
