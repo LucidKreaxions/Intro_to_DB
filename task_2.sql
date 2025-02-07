@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Books (
 
 -- Create the Customers table
 CREATE TABLE IF NOT EXISTS Customers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) NOT NULL UNIQUE,
     phone VARCHAR(20),
@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS Customers (
 CREATE TABLE IF NOT EXISTS Orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    order_date DATE DEFAULT (CURRENT_DATE),
     total_price DECIMAL(10,2) NOT NULL DEFAULT 0,
-    FOREIGN KEY (customer_id) REFERENCES Customers(id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 );
 
 -- Create the Order Details table
